@@ -43,6 +43,11 @@ registerCourse("AAA8", {
       "description": ""
     },
     {
+      "title": "الحلقة 6",
+      "link": "https://ia601802.us.archive.org/21/items/8_20260815_20260815/6.mp4",
+      "description": ""
+    },
+    {
       "title": "الحلقة 7",
       "link": "https://ia601802.us.archive.org/21/items/8_20260815_20260815/7.mp4",
       "description": ""
