@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كورس — منصة حكيم التعليمية</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#e5202c">
+<script>(function(){try{if(localStorage.getItem('hakim_theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
+<style>
+/* ============================================================
+   منصة حكيم التعليمية — نظام التصميم (نسخة موسّعة)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0c0c0d;
+  --surface: #161616;
+  --surface-2: #1c1c1e;
+  --line: #2a2a2c;
+  --text: #f2f2f2;
+  --text-muted: #9a9a9d;
+
+  --red: #e5202c;
+  --red-dim: #a3141c;
+  --red-glow: rgba(229,32,44,0.35);
+
+  --green: #2fb85f;
+  --amber: #e8a33d;
+
+  --font-display: 'Tajawal', sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', sans-serif;
+
+  --radius-card: 10px;
+  --radius-sm: 8px;
+
+  --shadow-lift: 0 16px 32px rgba(0,0,0,0.55);
+}
+
+html[data-theme="light"] {
+  --bg: #f4f4f5;
+  --surface: #ffffff;
+  --surface-2: #f0f0f1;
+  --line: #e2e2e4;
+  --text: #17171a;
+  --text-muted: #6b6b70;
+  --shadow-lift: 0 16px 32px rgba(0,0,0,0.12);
+}
+
+* { box-sizing: border-box; }
+html { color-scheme: dark; }
+html[data-theme="light"] { color-scheme: light; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image: radial-gradient(circle at 15% 0%, rgba(229,32,44,0.09), transparent 45%);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--red); color: #fff; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 22px; }
+
+/* ---------- الرأس ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(12,12,13,0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--red-dim);
+}
+html[data-theme="light"] .site-header { background: rgba(255,255,255,0.85); }
+
+.site-header-inner { display: flex; align-items: center; gap: 14px; padding: 14px 22px; }
+.brand { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+
+.brand-mark { width: 44px; height: 44px; flex-shrink: 0; filter: drop-shadow(0 0 6px rgba(229,32,44,0.55)); animation: logo-pulse 3.2s ease-in-out infinite; }
+@keyframes logo-pulse {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(229,32,44,0.45)); }
+  50% { filter: drop-shadow(0 0 14px rgba(229,32,44,0.85)); }
+}
+
+.brand-text h1 { font-family: var(--font-display); font-weight: 900; font-size: 1.4rem; margin: 0; letter-spacing: 0.3px; }
+.brand-text h1 span { color: var(--red); }
+.brand-text p { margin: 0; font-size: 0.74rem; color: var(--text-muted); }
+
+.header-actions { display: flex; align-items: center; gap: 8px; }
+.icon-btn {
+  width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line);
+  background: var(--surface); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--text-muted); transition: all 0.15s ease; flex-shrink: 0;
+}
+.icon-btn:hover { color: var(--red); border-color: var(--red-dim); }
+.icon-btn svg { width: 18px; height: 18px; fill: currentColor; }
+.icon-btn .sun { display: none; }
+html[data-theme="light"] .icon-btn .moon { display: none; }
+html[data-theme="light"] .icon-btn .sun { display: block; }
+
+/* ---------- شريط البحث والتصنيف ---------- */
+.control-panel { padding: 26px 0 10px; }
+.search-row { position: relative; }
+.search-row input {
+  width: 100%; background: var(--surface); border: 1px solid var(--line); color: var(--text);
+  font-family: var(--font-body); font-size: 0.95rem; padding: 13px 46px 13px 16px;
+  border-radius: var(--radius-sm); transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.search-row input::placeholder { color: var(--text-muted); }
+.search-row input:focus { border-color: var(--red); outline: none; box-shadow: 0 0 0 3px var(--red-glow); }
+.search-row svg { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; fill: none; stroke: var(--text-muted); stroke-width: 2; pointer-events: none; }
+
+.tab-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.tab-btn {
+  background: var(--surface); border: 1px solid var(--line); color: var(--text-muted);
+  font-family: var(--font-body); font-weight: 500; font-size: 0.82rem; padding: 8px 18px;
+  border-radius: var(--radius-sm); cursor: pointer; transition: all 0.15s ease;
+}
+.tab-btn:hover { color: var(--text); border-color: var(--red-dim); }
+.tab-btn.active { background: var(--red); border-color: var(--red); color: #fff; font-weight: 700; }
+
+/* ---------- شبكة الكروت ---------- */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 20px; padding: 22px 0 60px; }
+.course-card { position: relative; display: block; cursor: pointer; opacity: 0; transform: translateY(10px); animation: card-in 0.45s ease forwards; }
+@keyframes card-in { to { opacity: 1; transform: translateY(0); } }
+
+.card-media { position: relative; width: 100%; aspect-ratio: 2/3; border-radius: var(--radius-card); overflow: hidden; background: var(--surface); border: 1px solid var(--line); transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.card-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s ease; }
+.card-badge { position: absolute; top: 10px; right: 10px; background: var(--red); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 4px 11px; border-radius: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+.card-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.35); opacity: 0; transition: opacity 0.2s ease; }
+.card-play svg { width: 46px; height: 46px; fill: #fff; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6)); transform: scale(0.85); transition: transform 0.2s ease; }
+.card-body { padding: 10px 2px 0; }
+.card-body h3 { margin: 0 0 3px; font-family: var(--font-display); font-weight: 700; font-size: 0.92rem; text-align: center; color: var(--text); }
+.card-body p { margin: 0; font-size: 0.76rem; color: var(--text-muted); text-align: center; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.course-card:hover .card-media, .course-card:focus-visible .card-media { border-color: var(--red); box-shadow: var(--shadow-lift), 0 0 0 1px var(--red-glow); }
+.course-card:hover .card-media img { transform: scale(1.06); }
+.course-card:hover .card-play { opacity: 1; }
+.course-card:hover .card-play svg { transform: scale(1); }
+
+/* ---------- حالة عدم وجود كورسات ---------- */
+.empty-state { text-align: center; padding: 70px 20px 90px; color: var(--text-muted); }
+.empty-state svg { width: 56px; height: 56px; fill: none; stroke: var(--text-muted); stroke-width: 1.4; margin-bottom: 16px; }
+.empty-state h2 { font-family: var(--font-display); color: var(--text); font-size: 1.15rem; margin: 0 0 8px; }
+.empty-state p { max-width: 420px; margin: 0 auto; font-size: 0.86rem; }
+.empty-state code { background: var(--surface); border: 1px solid var(--line); padding: 2px 7px; border-radius: 5px; font-size: 0.8rem; color: var(--red); direction: ltr; display: inline-block; }
+
+/* ---------- التذييل ---------- */
+.site-footer { border-top: 1px solid var(--line); padding: 26px 0 34px; text-align: center; }
+.site-footer p { margin: 0 0 6px; font-size: 0.78rem; color: var(--text-muted); }
+.site-footer .rights-note { max-width: 560px; margin: 0 auto; font-size: 0.72rem; color: var(--text-muted); opacity: 0.7; }
+.site-footer .admin-link { display: inline-block; margin-top: 10px; font-size: 0.7rem; color: var(--text-muted); opacity: 0.5; }
+.site-footer .admin-link:hover { opacity: 1; color: var(--red); }
+
+/* ============================================================
+   صفحة الكورس (course.html)
+   ============================================================ */
+.back-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-muted); font-size: 0.85rem; padding: 18px 0 0; }
+.back-link:hover { color: var(--red); }
+.back-link svg { width: 16px; height: 16px; fill: currentColor; }
+
+.course-banner { display: grid; grid-template-columns: 190px 1fr; gap: 26px; padding: 22px 0 8px; align-items: start; }
+@media (max-width: 640px) { .course-banner { grid-template-columns: 1fr; } }
+.course-banner .banner-img { width: 100%; aspect-ratio: 2/3; border-radius: var(--radius-card); overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+.course-banner .banner-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.course-banner h2 { font-family: var(--font-display); font-weight: 900; font-size: 1.5rem; margin: 4px 0 10px; }
+.course-banner .banner-desc { color: var(--text-muted); font-size: 0.92rem; max-width: 640px; }
+.course-banner .badges { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.course-banner .badges span { font-size: 0.72rem; padding: 4px 12px; border-radius: 5px; border: 1px solid var(--line); color: var(--text-muted); }
+.course-banner .badges span:first-child { background: var(--red); border-color: var(--red); color: #fff; font-weight: 700; }
+
+/* قسم المعلومات */
+.info-section { margin: 28px 0; }
+.info-section h3 { font-family: var(--font-display); font-size: 1rem; margin: 0 0 12px; color: var(--text-muted); font-weight: 700; }
+.info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+.info-item { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; }
+.info-item .label { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px; }
+.info-item .value { font-size: 0.88rem; font-weight: 600; }
+.info-overview { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px 16px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.8; }
+
+.player-shell { margin-top: 10px; position: relative; width: 100%; background: #000; border-radius: var(--radius-card); overflow: hidden; box-shadow: var(--shadow-lift); border: 1px solid var(--line); }
+.player-shell .now-playing-title { padding: 12px 16px; font-size: 0.86rem; color: var(--text-muted); background: var(--surface); border-top: 1px solid var(--line); }
+.player-shell .now-playing-title strong { color: var(--text); font-weight: 600; }
+
+/* أزرار الحلقة السابقة / التالية */
+.player-nav { display: flex; gap: 10px; margin-top: 12px; }
+.nav-btn {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--surface-2); border: 1px solid var(--line); color: var(--text);
+  padding: 12px; border-radius: var(--radius-sm); cursor: pointer; font-family: var(--font-body);
+  font-weight: 600; font-size: 0.85rem; transition: border-color 0.15s ease, background 0.15s ease;
+}
+.nav-btn:hover:not(:disabled) { border-color: var(--red); background: rgba(229,32,44,0.08); }
+.nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.nav-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* تبويبات تجميع الحلقات */
+.episode-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 22px 0 14px; }
+.episode-tab {
+  background: var(--surface); border: 1px solid var(--line); color: var(--text-muted);
+  font-size: 0.78rem; font-weight: 600; padding: 7px 14px; border-radius: 999px; cursor: pointer;
+  transition: all 0.15s ease; direction: ltr;
+}
+.episode-tab:hover { border-color: var(--red-dim); color: var(--text); }
+.episode-tab.active { background: var(--red); border-color: var(--red); color: #fff; }
+
+.lesson-list { margin: 8px 0 60px; display: flex; flex-direction: column; gap: 10px; }
+.lesson-list h3 { font-family: var(--font-display); font-size: 1rem; margin: 0 0 6px; color: var(--text-muted); font-weight: 700; }
+.lesson-item { display: flex; align-items: center; gap: 14px; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 12px 14px; cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease; text-align: right; }
+.lesson-item:hover { border-color: var(--red-dim); }
+.lesson-item.active { border-color: var(--red); background: linear-gradient(90deg, rgba(229,32,44,0.12), transparent); }
+.lesson-num { flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: var(--bg); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 0.82rem; color: var(--text-muted); }
+.lesson-item.active .lesson-num { background: var(--red); color: #fff; border-color: var(--red); }
+.lesson-text { flex: 1; min-width: 0; }
+.lesson-text h4 { margin: 0 0 3px; font-size: 0.92rem; font-weight: 600; }
+.lesson-text p { margin: 0; font-size: 0.78rem; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lesson-play { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; }
+.lesson-play svg { width: 13px; height: 13px; fill: var(--text-muted); }
+.lesson-item.active .lesson-play { background: var(--red); }
+.lesson-item.active .lesson-play svg { fill: #fff; }
+
+.course-error { text-align: center; padding: 90px 20px; color: var(--text-muted); }
+.course-error h2 { color: var(--text); font-family: var(--font-display); }
+
+@media (prefers-reduced-motion: reduce) {
+  .course-card, .card-media img, .lesson-item, .brand-mark { transition: none !important; animation: none !important; }
+  .course-card { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   مشغّل الفيديو المخصص (player.js)
+   ============================================================ */
+.hp-video-wrap { position: relative; width: 100%; }
+.hp-video-wrap video, .hp-video-wrap iframe { display: block; width: 100%; aspect-ratio: 16/9; border: none; background: #000; }
+.hp-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.55); z-index: 5; opacity: 0; transition: opacity 0.2s ease; pointer-events: none; }
+.hp-loading.show { opacity: 1; }
+.hp-spinner { width: 42px; height: 42px; border: 4px solid rgba(255,255,255,0.2); border-top-color: var(--red); border-radius: 50%; animation: hp-spin 0.8s linear infinite; }
+@keyframes hp-spin { to { transform: rotate(360deg); } }
+.hp-error { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: rgba(0,0,0,0.9); color: #f0f0f0; text-align: center; padding: 20px; z-index: 6; }
+.hp-error svg { width: 36px; height: 36px; fill: var(--red); }
+.hp-error p { margin: 0; font-size: 0.82rem; color: #ccc; }
+.hp-center-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; border-radius: 50%; background: rgba(20,20,20,0.6); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 4; opacity: 0; pointer-events: none; transition: opacity 0.2s ease, transform 0.15s ease, background 0.15s ease; }
+.hp-center-play.show { opacity: 1; pointer-events: auto; }
+.hp-center-play:hover { background: var(--red); transform: translate(-50%,-50%) scale(1.07); }
+.hp-center-play svg { width: 26px; height: 26px; fill: #fff; margin-right: -3px; }
+.hp-bottom { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; background: linear-gradient(to top, rgba(0,0,0,0.88), rgba(0,0,0,0)); padding-top: 22px; transition: opacity 0.25s ease, transform 0.25s ease; }
+.hp-video-wrap.controls-hidden .hp-bottom { opacity: 0; transform: translateY(6px); pointer-events: none; }
+.hp-video-wrap.controls-hidden { cursor: none; }
+.hp-progress-row { display: flex; align-items: center; gap: 8px; padding: 0 12px; }
+.hp-progress-wrap { position: relative; flex: 1; display: flex; align-items: center; }
+.hp-progress-bar { width: 100%; -webkit-appearance: none; appearance: none; height: 5px; border-radius: 3px; background: #444; outline: none; cursor: pointer; }
+.hp-progress-bar::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px; border-radius: 50%; background: var(--red); cursor: pointer; }
+.hp-progress-bar::-moz-range-thumb { width: 13px; height: 13px; border: none; border-radius: 50%; background: var(--red); cursor: pointer; }
+.hp-hover-preview { position: absolute; bottom: 16px; transform: translateX(50%); background: #000; color: #fff; font-size: 11px; padding: 3px 7px; border-radius: 5px; direction: ltr; pointer-events: none; opacity: 0; transition: opacity 0.12s ease; white-space: nowrap; }
+.hp-hover-preview.show { opacity: 1; }
+.hp-time { color: #ccc; font-size: 12px; min-width: 90px; text-align: center; direction: ltr; }
+.hp-controls { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; padding: 10px 12px 14px; }
+.hp-btn { display: flex; align-items: center; justify-content: center; gap: 4px; background: rgba(255,255,255,0.08); color: #f0f0f0; border: none; border-radius: 8px; padding: 8px 12px; font-size: 13px; cursor: pointer; transition: background 0.15s ease, transform 0.1s ease; font-family: var(--font-body); }
+.hp-btn:hover { background: rgba(255,255,255,0.18); }
+.hp-btn:active { transform: scale(0.9); }
+.hp-btn.play-pause { background: var(--red); color: #fff; padding: 8px 16px; }
+.hp-btn.play-pause:hover { background: #ff2e3b; }
+.hp-btn.pulse { animation: hp-pulse 0.28s ease; }
+@keyframes hp-pulse { 0% { transform: scale(1); } 40% { transform: scale(0.85); } 100% { transform: scale(1); } }
+.hp-btn svg { width: 18px; height: 18px; fill: currentColor; }
+.hp-speed { background: rgba(255,255,255,0.08); color: #f0f0f0; border: none; border-radius: 8px; padding: 8px 10px; font-size: 13px; cursor: pointer; font-family: var(--font-body); }
+.hp-volume-wrap { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.08); border-radius: 8px; padding: 6px 10px; }
+.hp-volume-bar { width: 70px; -webkit-appearance: none; appearance: none; height: 4px; border-radius: 3px; background: #666; outline: none; cursor: pointer; }
+.hp-volume-bar::-webkit-slider-thumb { -webkit-appearance: none; width: 11px; height: 11px; border-radius: 50%; background: var(--red); cursor: pointer; }
+.hp-volume-bar::-moz-range-thumb { width: 11px; height: 11px; border: none; border-radius: 50%; background: var(--red); cursor: pointer; }
+
+/* ============================================================
+   صفحة الأدمن (admin.html)
+   ============================================================ */
+.admin-shell { max-width: 880px; margin: 0 auto; padding: 40px 20px 80px; }
+.admin-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 28px; margin-bottom: 20px; }
+.admin-card h2 { font-family: var(--font-display); font-size: 1.15rem; margin: 0 0 6px; }
+.admin-card .hint { font-size: 0.8rem; color: var(--text-muted); margin: 0 0 18px; line-height: 1.8; }
+
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px; font-weight: 600; }
+.field input[type="text"], .field input[type="password"], .field input[type="url"], .field textarea, .field select {
+  width: 100%; background: var(--surface-2); border: 1px solid var(--line); color: var(--text);
+  font-family: var(--font-body); font-size: 0.9rem; padding: 11px 13px; border-radius: var(--radius-sm);
+  transition: border-color 0.15s ease;
+}
+.field input:focus, .field textarea:focus, .field select:focus { border-color: var(--red); outline: none; }
+.field textarea { min-height: 80px; resize: vertical; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
+
+.btn-primary, .btn-secondary, .btn-danger {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 11px 22px; border-radius: var(--radius-sm); font-family: var(--font-body);
+  font-weight: 700; font-size: 0.86rem; cursor: pointer; border: none; transition: all 0.15s ease;
+}
+.btn-primary { background: var(--red); color: #fff; }
+.btn-primary:hover { background: #ff2e3b; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--line); }
+.btn-secondary:hover { border-color: var(--red-dim); }
+.btn-danger { background: transparent; color: #ff5c5c; border: 1px solid rgba(255,92,92,0.4); }
+.btn-danger:hover { background: rgba(255,92,92,0.1); }
+
+.admin-login { max-width: 380px; margin: 90px auto; text-align: center; }
+.admin-login .brand-mark { width: 60px; height: 60px; margin: 0 auto 16px; }
+.admin-login h2 { font-family: var(--font-display); margin: 0 0 22px; }
+.admin-login .field { text-align: right; }
+.admin-error { color: #ff5c5c; font-size: 0.82rem; margin-top: 10px; min-height: 18px; }
+
+.admin-topbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; border-bottom: 1px solid var(--line); }
+.admin-topbar .brand { gap: 10px; }
+.admin-topbar .brand-mark { width: 32px; height: 32px; }
+.admin-topbar h1 { font-size: 1.05rem; }
+
+.course-row {
+  display: flex; align-items: center; gap: 14px; background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 10px;
+}
+.course-row .thumb { width: 44px; height: 58px; border-radius: 6px; overflow: hidden; background: var(--bg); flex-shrink: 0; border: 1px solid var(--line); }
+.course-row .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.course-row .info { flex: 1; min-width: 0; }
+.course-row .info h4 { margin: 0 0 3px; font-size: 0.92rem; }
+.course-row .info p { margin: 0; font-size: 0.76rem; color: var(--text-muted); direction: ltr; text-align: right; }
+.status-pill { font-size: 0.68rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; flex-shrink: 0; }
+.status-pill.published { background: rgba(47,184,95,0.15); color: var(--green); }
+.status-pill.draft { background: rgba(232,163,61,0.15); color: var(--amber); }
+.course-row .row-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+.step-tabs { display: flex; gap: 6px; margin-bottom: 20px; border-bottom: 1px solid var(--line); }
+.step-tab { padding: 10px 18px; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; }
+.step-tab.active { color: var(--red); border-color: var(--red); }
+.step-panel { display: none; }
+.step-panel.active { display: block; }
+
+.video-row { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 12px; }
+.video-row-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.video-row-head span { font-weight: 700; font-size: 0.85rem; }
+.video-row-actions { display: flex; gap: 6px; }
+.video-row-actions button { background: var(--surface); border: 1px solid var(--line); color: var(--text-muted); width: 28px; height: 28px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.video-row-actions button:hover { color: var(--red); border-color: var(--red-dim); }
+.video-row-actions button svg { width: 14px; height: 14px; fill: currentColor; }
+
+.toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--surface-2); border: 1px solid var(--line); color: var(--text); padding: 13px 22px; border-radius: var(--radius-sm); font-size: 0.85rem; box-shadow: var(--shadow-lift); z-index: 100; opacity: 0; pointer-events: none; transition: all 0.25s ease; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.success { border-color: var(--green); }
+.toast.error { border-color: #ff5c5c; }
+
+.admin-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 90; }
+.admin-overlay .box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-card); padding: 24px; display: flex; align-items: center; gap: 12px; }
+
+.toggle-switch { position: relative; width: 42px; height: 24px; flex-shrink: 0; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-switch .track { position: absolute; inset: 0; background: var(--line); border-radius: 999px; cursor: pointer; transition: background 0.2s ease; }
+.toggle-switch .track::after { content:""; position: absolute; width: 18px; height: 18px; border-radius: 50%; background: #fff; top: 3px; right: 3px; transition: transform 0.2s ease; }
+.toggle-switch input:checked + .track { background: var(--green); }
+.toggle-switch input:checked + .track::after { transform: translateX(-18px); }
+
+.empty-dash { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 0.86rem; }
+
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap site-header-inner">
+      <a href="index.html" class="brand">
+        <svg class="brand-mark" viewBox="0 0 200 200">
+          <defs>
+            <radialGradient id="bgg" cx="50%" cy="42%" r="65%"><stop offset="0%" stop-color="#1a1a1c"/><stop offset="100%" stop-color="#0c0c0d"/></radialGradient>
+            <linearGradient id="bladeg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#ff5a63"/><stop offset="55%" stop-color="#e5202c"/><stop offset="100%" stop-color="#8c0f18"/></linearGradient>
+            <linearGradient id="flameg" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" stop-color="#ff2e3b" stop-opacity="0"/><stop offset="100%" stop-color="#ff6a52"/></linearGradient>
+          </defs>
+          <circle cx="100" cy="100" r="98" fill="url(#bgg)" stroke="#e5202c" stroke-width="3"/>
+          <path d="M100 34 L112 92 L100 168 L88 92 Z" fill="url(#bladeg)"/>
+          <path d="M100 96 C70 86 58 60 66 30 C74 56 84 70 100 78 Z" fill="url(#flameg)"/>
+          <path d="M100 96 C130 86 142 60 134 30 C126 56 116 70 100 78 Z" fill="url(#flameg)"/>
+          <circle cx="100" cy="46" r="5" fill="#fff" opacity="0.9"/>
+        </svg>
+        <div class="brand-text">
+          <h1>منصة <span>حكيم</span> التعليمية</h1>
+          <p>تعلّم بالترتيب الذي تريده أنت</p>
+        </div>
+      </a>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" title="تبديل الوضع الليلي/النهاري" aria-label="تبديل الوضع">
+          <svg class="moon" viewBox="0 0 24 24"><path d="M12 3a9 9 0 109 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 01-4.4 2.26 5.403 5.403 0 01-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0-5a1 1 0 011 1v2a1 1 0 11-2 0V3a1 1 0 011-1zm0 18a1 1 0 011 1v2a1 1 0 11-2 0v-2a1 1 0 011-1zM4.22 4.22a1 1 0 011.42 0l1.41 1.41a1 1 0 11-1.41 1.41L4.22 5.64a1 1 0 010-1.42zm12.73 12.73a1 1 0 011.41 0l1.41 1.41a1 1 0 01-1.41 1.41l-1.41-1.41a1 1 0 010-1.41zM1 12a1 1 0 011-1h2a1 1 0 110 2H2a1 1 0 01-1-1zm18 0a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1zM4.22 19.78a1 1 0 010-1.41l1.41-1.41a1 1 0 111.41 1.41l-1.41 1.41a1 1 0 01-1.41 0zM16.95 4.22a1 1 0 010 1.41l-1.41 1.41a1 1 0 11-1.41-1.41l1.41-1.41a1 1 0 011.41 0z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z"/></svg>
+      العودة لكل الكورسات
+    </a>
+
+    <div id="courseError" class="course-error" style="display:none"></div>
+
+    <div id="pageBody">
+      <div class="course-banner" id="banner"></div>
+
+      <div class="info-section" id="infoSection"></div>
+
+      <div class="player-shell" id="playerShell">
+        <div id="playerHost"></div>
+        <div class="now-playing-title" id="nowPlaying"></div>
+      </div>
+
+      <div class="player-nav" id="playerNav"></div>
+
+      <div class="episode-tabs" id="episodeTabs"></div>
+
+      <div class="lesson-list" id="lessonList"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 منصة حكيم التعليمية — جميع الحقوق محفوظة</p>
+      <p class="rights-note">
+        المحتوى التعليمي المعروض على المنصة ملك لأصحابه ومقدّمي الكورسات الأصليين؛
+        هذه المنصة أداة عرض وتنظيم فقط ولا تدّعي ملكية أي مادة تعليمية بها.
+      </p>
+    </div>
+  </footer>
+
+<script>
+/* لا تعدّل هذا الملف — هذه دالة داخلية يستخدمها كل ملف كورس تلقائيًا */
+function registerCourse(id, data) {
+  window.__HAKIM_COURSES = window.__HAKIM_COURSES || {};
+  window.__HAKIM_COURSES[id] = data;
+}
+
+</script>
+<script>
+/* ============================================================
+   HakimPlayer — مشغّل فيديو مخصص وقابل لإعادة الاستخدام
+   ============================================================ */
+const HakimPlayer = (() => {
+
+  function isDirectVideo(url) {
+    return /\.(mp4|webm|ogg|ogv|m4v)(\?.*)?$/i.test(url);
+  }
+
+  function formatTime(sec) {
+    if (!isFinite(sec)) return '00:00';
+    const m = Math.floor(sec / 60).toString().padStart(2, '0');
+    const s = Math.floor(sec % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  }
+
+  function svgIcon(path, extra) {
+    return `<svg viewBox="0 0 24 24" ${extra || ''}><path d="${path}"/></svg>`;
+  }
+
+  const ICONS = {
+    play: 'M8 5v14l11-7z',
+    pause: 'M6 5h4v14H6zM14 5h4v14h-4z',
+    back10: 'M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z',
+    fwd10: 'M12 5V1l5 5-5 5V7c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6h2c0 4.42-3.58 8-8 8s-8-3.58-8-8 3.58-8 8-8z',
+    fullscreen: 'M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z',
+    volUp: 'M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z',
+    volMute: 'M16.5 12A4.5 4.5 0 0014 7.97v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51A8.796 8.796 0 0021 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06a8.94 8.94 0 003.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z',
+    warn: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'
+  };
+
+  function mount(container, { src, storageKey }) {
+    container.innerHTML = '';
+
+    if (!isDirectVideo(src)) {
+      const wrap = document.createElement('div');
+      wrap.className = 'hp-video-wrap';
+      wrap.innerHTML = `<iframe src="${src}" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>`;
+      container.appendChild(wrap);
+      return;
+    }
+
+    const wrap = document.createElement('div');
+    wrap.className = 'hp-video-wrap';
+    wrap.innerHTML = `
+      <video playsinline preload="metadata" src="${src}"></video>
+      <div class="hp-loading" data-role="loading"><div class="hp-spinner"></div></div>
+      <div class="hp-error" data-role="error">
+        ${svgIcon(ICONS.warn)}
+        <strong>تعذّر تحميل الفيديو</strong>
+        <p>تحقق من الاتصال أو من صحة الرابط.</p>
+      </div>
+      <div class="hp-center-play" data-role="centerPlay" role="button" tabindex="0" aria-label="تشغيل الفيديو">
+        ${svgIcon(ICONS.play)}
+      </div>
+      <div class="hp-bottom" data-role="bottomBar">
+        <div class="hp-progress-row">
+          <span class="hp-time" data-role="time">00:00 / 00:00</span>
+          <div class="hp-progress-wrap">
+            <span class="hp-hover-preview" data-role="hoverPreview">00:00</span>
+            <input type="range" class="hp-progress-bar" data-role="progress" value="0" min="0" max="100" step="0.1" aria-label="شريط تقدم الفيديو">
+          </div>
+        </div>
+        <div class="hp-controls">
+          <button class="hp-btn" data-role="back" title="تأخير 10 ثواني" aria-label="تأخير 10 ثواني">${svgIcon(ICONS.back10)}10</button>
+          <button class="hp-btn play-pause" data-role="playPause" title="تشغيل / إيقاف" aria-label="تشغيل أو إيقاف">
+            <span data-role="playIcon">${svgIcon(ICONS.play)}</span>
+            <span data-role="pauseIcon" style="display:none">${svgIcon(ICONS.pause)}</span>
+          </button>
+          <button class="hp-btn" data-role="forward" title="تقديم 10 ثواني" aria-label="تقديم 10 ثواني">10${svgIcon(ICONS.fwd10)}</button>
+          <div class="hp-volume-wrap">
+            <button class="hp-btn" data-role="mute" style="padding:6px" title="كتم/إلغاء كتم الصوت" aria-label="كتم أو إلغاء كتم الصوت">
+              <span data-role="volIcon">${svgIcon(ICONS.volUp)}</span>
+              <span data-role="muteIcon" style="display:none">${svgIcon(ICONS.volMute)}</span>
+            </button>
+            <input type="range" class="hp-volume-bar" data-role="volume" min="0" max="1" step="0.01" value="1" aria-label="مستوى الصوت">
+          </div>
+          <select class="hp-speed" data-role="speed" title="سرعة التشغيل" aria-label="سرعة التشغيل">
+            <option value="0.5">0.5x</option>
+            <option value="0.75">0.75x</option>
+            <option value="1" selected>1x</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+          </select>
+          <button class="hp-btn" data-role="fullscreen" title="ملء الشاشة" aria-label="ملء الشاشة">${svgIcon(ICONS.fullscreen)}</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(wrap);
+
+    const video = wrap.querySelector('video');
+    const q = (role) => wrap.querySelector(`[data-role="${role}"]`);
+    const loading = q('loading'), errorBox = q('error'), centerPlay = q('centerPlay'),
+          timeLabel = q('time'), progress = q('progress'),
+          hoverPreview = q('hoverPreview'), playPauseBtn = q('playPause'),
+          playIcon = q('playIcon'), pauseIcon = q('pauseIcon'), backBtn = q('back'),
+          forwardBtn = q('forward'), muteBtn = q('mute'), volIcon = q('volIcon'),
+          muteIcon = q('muteIcon'), volumeBar = q('volume'), speedSelect = q('speed'),
+          fullscreenBtn = q('fullscreen');
+
+    function pulse(btn) { btn.classList.remove('pulse'); void btn.offsetWidth; btn.classList.add('pulse'); }
+    function togglePlay() { video.paused ? video.play() : video.pause(); }
+    function updateCenterPlay() { centerPlay.classList.toggle('show', video.paused); }
+
+    video.addEventListener('play', () => { playIcon.style.display = 'none'; pauseIcon.style.display = 'block'; updateCenterPlay(); });
+    video.addEventListener('pause', () => { playIcon.style.display = 'block'; pauseIcon.style.display = 'none'; updateCenterPlay(); });
+    playPauseBtn.addEventListener('click', () => { pulse(playPauseBtn); togglePlay(); });
+    video.addEventListener('click', togglePlay);
+    centerPlay.addEventListener('click', togglePlay);
+    centerPlay.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); togglePlay(); } });
+
+    backBtn.addEventListener('click', () => { pulse(backBtn); video.currentTime = Math.max(0, video.currentTime - 10); });
+    forwardBtn.addEventListener('click', () => { pulse(forwardBtn); video.currentTime = Math.min(video.duration || Infinity, video.currentTime + 10); });
+
+    speedSelect.addEventListener('change', () => { video.playbackRate = parseFloat(speedSelect.value); });
+
+    function toggleFullscreen() {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else if (wrap.requestFullscreen) wrap.requestFullscreen();
+      else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+    }
+    fullscreenBtn.addEventListener('click', () => { pulse(fullscreenBtn); toggleFullscreen(); });
+
+    function updateVolumeIcon() {
+      const muted = video.muted || video.volume === 0;
+      volIcon.style.display = muted ? 'none' : 'block';
+      muteIcon.style.display = muted ? 'block' : 'none';
+    }
+    muteBtn.addEventListener('click', () => {
+      pulse(muteBtn);
+      video.muted = !video.muted;
+      if (!video.muted && video.volume === 0) { video.volume = 0.5; volumeBar.value = 0.5; }
+      updateVolumeIcon();
+    });
+    volumeBar.addEventListener('input', () => {
+      video.volume = parseFloat(volumeBar.value);
+      video.muted = video.volume === 0;
+      updateVolumeIcon();
+    });
+
+    video.addEventListener('timeupdate', () => {
+      if (!isNaN(video.duration)) {
+        progress.value = (video.currentTime / video.duration) * 100;
+        if (!video.paused && storageKey) localStorage.setItem(storageKey, video.currentTime);
+      }
+      timeLabel.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+    });
+
+    video.addEventListener('loadedmetadata', () => {
+      timeLabel.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+      if (storageKey) {
+        const saved = parseFloat(localStorage.getItem(storageKey));
+        if (saved && saved > 1 && saved < video.duration - 2) video.currentTime = saved;
+      }
+    });
+
+    progress.addEventListener('input', () => {
+      if (!isNaN(video.duration)) video.currentTime = (progress.value / 100) * video.duration;
+    });
+    progress.addEventListener('mousemove', (e) => {
+      if (isNaN(video.duration)) return;
+      const rect = progress.getBoundingClientRect();
+      const ratio = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+      hoverPreview.textContent = formatTime(ratio * video.duration);
+      hoverPreview.style.right = `${ratio * 100}%`;
+      hoverPreview.classList.add('show');
+    });
+    progress.addEventListener('mouseleave', () => hoverPreview.classList.remove('show'));
+
+    video.addEventListener('waiting', () => loading.classList.add('show'));
+    video.addEventListener('canplay', () => loading.classList.remove('show'));
+    video.addEventListener('playing', () => loading.classList.remove('show'));
+    video.addEventListener('loadeddata', () => loading.classList.remove('show'));
+    video.addEventListener('error', () => { loading.classList.remove('show'); errorBox.style.display = 'flex'; });
+
+    let hideTimer = null;
+    function showControls() {
+      wrap.classList.remove('controls-hidden');
+      clearTimeout(hideTimer);
+      if (!video.paused) hideTimer = setTimeout(() => wrap.classList.add('controls-hidden'), 2500);
+    }
+    ['mousemove', 'touchstart', 'click'].forEach(evt => wrap.addEventListener(evt, showControls));
+    video.addEventListener('play', showControls);
+    video.addEventListener('pause', () => { clearTimeout(hideTimer); wrap.classList.remove('controls-hidden'); });
+
+    function keyHandler(e) {
+      const tag = document.activeElement.tagName;
+      if (tag === 'SELECT' || tag === 'INPUT' || tag === 'TEXTAREA') return;
+      if (e.code === 'Space') { e.preventDefault(); pulse(playPauseBtn); togglePlay(); }
+      else if (e.code === 'ArrowRight') { video.currentTime = Math.min(video.duration || Infinity, video.currentTime + 10); pulse(forwardBtn); }
+      else if (e.code === 'ArrowLeft') { video.currentTime = Math.max(0, video.currentTime - 10); pulse(backBtn); }
+      else if (e.key.toLowerCase() === 'f') { pulse(fullscreenBtn); toggleFullscreen(); }
+      else if (e.key.toLowerCase() === 'm') { pulse(muteBtn); video.muted = !video.muted; updateVolumeIcon(); }
+    }
+    document.addEventListener('keydown', keyHandler);
+    wrap._hakimCleanup = () => document.removeEventListener('keydown', keyHandler);
+
+    updateCenterPlay();
+    updateVolumeIcon();
+  }
+
+  function unmount(container) {
+    const wrap = container.querySelector('.hp-video-wrap');
+    if (wrap && wrap._hakimCleanup) wrap._hakimCleanup();
+    container.innerHTML = '';
+  }
+
+  return { mount, unmount };
+})();
+
+</script>
+<script>
+/* ============================================================
+   course.js — صفحة الكورس المستقلة
+   ============================================================ */
+
+(function () {
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+
+  const banner = document.getElementById('banner');
+  const infoSection = document.getElementById('infoSection');
+  const playerHost = document.getElementById('playerHost');
+  const nowPlaying = document.getElementById('nowPlaying');
+  const playerNav = document.getElementById('playerNav');
+  const episodeTabs = document.getElementById('episodeTabs');
+  const lessonListEl = document.getElementById('lessonList');
+  const pageBody = document.getElementById('pageBody');
+  const errorBox = document.getElementById('courseError');
+
+  const BATCH_SIZE = 10;
+  let currentVideos = [];
+  let currentIndex = 0;
+  let activeBatch = 0;
+
+  function escapeHtml(str) {
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
+  const PLACEHOLDER_IMG =
+    'data:image/svg+xml;utf8,' + encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" width="300" height="400">
+      <rect width="300" height="400" fill="#1c222e"/>
+      <text x="50%" y="50%" fill="#8b93a7" font-size="16" font-family="sans-serif" text-anchor="middle" dy=".3em">لا توجد صورة</text>
+    </svg>`);
+
+  function showError(title, msg) {
+    pageBody.style.display = 'none';
+    errorBox.style.display = 'block';
+    errorBox.innerHTML = `<h2>${escapeHtml(title)}</h2><p>${escapeHtml(msg)}</p><a href="index.html" class="back-link" style="justify-content:center">العودة للرئيسية</a>`;
+  }
+
+  function loadScript(src) {
+    return new Promise((resolve) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = () => resolve(true);
+      s.onerror = () => resolve(false);
+      document.head.appendChild(s);
+    });
+  }
+
+  const INFO_LABELS = {
+    overview: 'نبذة',
+    studio: 'الاستديو',
+    originalLanguage: 'اللغة الأصلية',
+    dubLanguage: 'لغة الدبلجة',
+    creator: 'الصانع (المدرس)',
+    startDate: 'تاريخ البدء',
+    endDate: 'تاريخ الانتهاء',
+    writer: 'الكاتب',
+    levelsCount: 'كم مستوى',
+    episodesThisLevel: 'عدد حلقات هذا المستوى'
+  };
+
+  function renderInfo(info) {
+    if (!info) { infoSection.innerHTML = ''; return; }
+    const overview = info.overview ? `<div class="info-overview">${escapeHtml(info.overview)}</div>` : '';
+    const items = Object.keys(INFO_LABELS)
+      .filter(k => k !== 'overview' && info[k])
+      .map(k => `
+        <div class="info-item">
+          <div class="label">${INFO_LABELS[k]}</div>
+          <div class="value">${escapeHtml(String(info[k]))}</div>
+        </div>`)
+      .join('');
+    if (!overview && !items) { infoSection.innerHTML = ''; return; }
+    infoSection.innerHTML = `
+      <h3>معلومات الكورس</h3>
+      ${overview}
+      ${items ? `<div class="info-grid">${items}</div>` : ''}
+    `;
+  }
+
+  function batchOf(index) { return Math.floor(index / BATCH_SIZE); }
+
+  function renderEpisodeTabs() {
+    const total = currentVideos.length;
+    if (total <= BATCH_SIZE) { episodeTabs.innerHTML = ''; return; }
+    const batchCount = Math.ceil(total / BATCH_SIZE);
+    let html = '';
+    for (let b = 0; b < batchCount; b++) {
+      const start = b * BATCH_SIZE + 1;
+      const end = Math.min(total, (b + 1) * BATCH_SIZE);
+      html += `<button class="episode-tab ${b === activeBatch ? 'active' : ''}" data-batch="${b}">${start}-${end}</button>`;
+    }
+    episodeTabs.innerHTML = html;
+    episodeTabs.querySelectorAll('.episode-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeBatch = parseInt(btn.dataset.batch, 10);
+        renderEpisodeTabs();
+        renderLessonList();
+      });
+    });
+  }
+
+  function renderLessonList() {
+    const total = currentVideos.length;
+    const start = total > BATCH_SIZE ? activeBatch * BATCH_SIZE : 0;
+    const end = total > BATCH_SIZE ? Math.min(total, start + BATCH_SIZE) : total;
+
+    let html = `<h3>محتوى الكورس</h3>`;
+    for (let i = start; i < end; i++) {
+      const v = currentVideos[i];
+      html += `
+        <div class="lesson-item ${i === currentIndex ? 'active' : ''}" data-index="${i}" tabindex="0">
+          <div class="lesson-num">${i + 1}</div>
+          <div class="lesson-text">
+            <h4>${escapeHtml(v.title || `فيديو ${i + 1}`)}</h4>
+            <p>${escapeHtml(v.description || '')}</p>
+          </div>
+          <div class="lesson-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>`;
+    }
+    lessonListEl.innerHTML = html;
+
+    lessonListEl.querySelectorAll('.lesson-item').forEach(el => {
+      const i = parseInt(el.dataset.index, 10);
+      el.addEventListener('click', () => playLesson(i));
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playLesson(i); }
+      });
+    });
+  }
+
+  function renderPlayerNav() {
+    const total = currentVideos.length;
+    playerNav.innerHTML = `
+      <button class="nav-btn" id="prevEpBtn" ${currentIndex <= 0 ? 'disabled' : ''}>
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        الحلقة السابقة
+      </button>
+      <button class="nav-btn" id="nextEpBtn" ${currentIndex >= total - 1 ? 'disabled' : ''}>
+        الحلقة التالية
+        <svg viewBox="0 0 24 24"><path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
+      </button>
+    `;
+    const prevBtn = document.getElementById('prevEpBtn');
+    const nextBtn = document.getElementById('nextEpBtn');
+    if (prevBtn) prevBtn.addEventListener('click', () => { if (currentIndex > 0) playLesson(currentIndex - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { if (currentIndex < total - 1) playLesson(currentIndex + 1); });
+  }
+
+  function playLesson(index) {
+    const v = currentVideos[index];
+    if (!v) return;
+    currentIndex = index;
+
+    HakimPlayer.mount(playerHost, {
+      src: v.link,
+      storageKey: `hakim_progress_${id}_${index}`
+    });
+    nowPlaying.innerHTML = `يُشغَّل الآن: <strong>${escapeHtml(v.title || '')}</strong>`;
+
+    const targetBatch = batchOf(index);
+    if (targetBatch !== activeBatch) {
+      activeBatch = targetBatch;
+      renderEpisodeTabs();
+    }
+    renderLessonList();
+    renderPlayerNav();
+
+    const activeEl = lessonListEl.querySelector(`[data-index="${index}"]`);
+    if (activeEl) activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  async function init() {
+    if (!id) { showError('لم يتم تحديد كورس', 'الرابط لا يحتوي على معرّف كورس صالح.'); return; }
+
+    const ok = await loadScript(`${id}.js`);
+    const data = (window.__HAKIM_COURSES || {})[id];
+
+    if (!ok || !data) {
+      showError('تعذّر العثور على هذا الكورس', 'تأكد من صحة الرابط أو من وجود ملف بيانات الكورس.');
+      return;
+    }
+
+    document.title = `${data.name || 'كورس'} — منصة حكيم التعليمية`;
+
+    banner.innerHTML = `
+      <div class="banner-img">
+        <img src="${data.img ? escapeHtml(data.img) : PLACEHOLDER_IMG}" alt="${escapeHtml(data.name || '')}"
+             onerror="this.onerror=null;this.src='${PLACEHOLDER_IMG}'">
+      </div>
+      <div>
+        <h2>${escapeHtml(data.name || 'كورس بدون اسم')}</h2>
+        <p class="banner-desc">${escapeHtml(data.description || '')}</p>
+        <div class="badges">
+          ${data.category ? `<span>${escapeHtml(data.category)}</span>` : ''}
+          ${data.level ? `<span>${escapeHtml(data.level)}</span>` : ''}
+          <span>${(data.videos || []).length} فيديو</span>
+        </div>
+      </div>`;
+
+    renderInfo(data.info);
+
+    currentVideos = data.videos || [];
+    if (currentVideos.length === 0) {
+      lessonListEl.innerHTML = `<p style="color:var(--text-muted);font-size:0.85rem">لا توجد فيديوهات مضافة لهذا الكورس بعد.</p>`;
+      playerNav.innerHTML = '';
+      return;
+    }
+
+    playLesson(0);
+  }
+
+  init();
+})();
+
+</script>
+</body>
+</html>
