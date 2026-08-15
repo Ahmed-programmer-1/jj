@@ -31,6 +31,21 @@ registerCourse("AAA6", {
       "title": "الحلقة 3",
       "link": "https://archive.org/download/ep-2_20260813/Ep2.mp4",
       "description": ""
+    },
+    {
+      "title": "الحلقة 4",
+      "link": "https://ia601604.us.archive.org/22/items/ep-6_20260815/EP4.mp4",
+      "description": ""
+    },
+    {
+      "title": "الحلقة 5",
+      "link": "hhttps://ia601604.us.archive.org/22/items/ep-6_20260815/EP5.mp4",
+      "description": ""
+    },
+    {
+      "title": "الحلقة 6",
+      "link": "https://ia601604.us.archive.org/22/items/ep-6_20260815/Ep6.mp4",
+      "description": ""
     }
   ]
 });
