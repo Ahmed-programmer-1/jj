@@ -46,6 +46,36 @@ registerCourse("AAA6", {
       "title": "الحلقة 6",
       "link": "https://ia601604.us.archive.org/22/items/ep-6_20260815/Ep6.mp4",
       "description": ""
+    },
+    {
+      "title": "الحلقة 7",
+      "link": "https://ia601601.us.archive.org/14/items/ep-7_20260815/Ep7.mp4",
+      "description": ""
+    },
+    {
+      "title": "الحلقة 8",
+      "link": "https://ia601601.us.archive.org/14/items/ep-7_20260815/Ep8.mp4",
+      "description": ""
+    },
+    {
+      "title": "الحلقة 9",
+      "link": "https://ia601601.us.archive.org/14/items/ep-7_20260815/Ep9.mp4",
+      "description": ""
+    },
+    {
+      "title": "الحلقة 10",
+      "link": "https://ia601601.us.archive.org/14/items/ep-7_20260815/Ep10.mp4",
+      "description": ""
+    },
+    {
+      "title": "الحلقة 11",
+      "link": "https://ia601601.us.archive.org/14/items/ep-7_20260815/Ep11.mp4",
+      "description": ""
+    },
+    {
+      "title": "الحلقة 12",
+      "link": "https://ia601601.us.archive.org/14/items/ep-7_20260815/Ep12.mp4",
+      "description": ""
     }
   ]
 });
