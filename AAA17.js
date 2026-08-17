@@ -19,7 +19,7 @@ registerCourse("AAA17", {
   "videos": [
     {
       "title": "الحلقة 1",
-      "link": "https://anonmp4.art/v/4PJGV7KQQhzfwao",
+      "link": "https://storage.to/yjtaq3LbO",
       "description": ""
     }
   ]
