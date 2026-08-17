@@ -3,4 +3,4 @@
    من admin.html. لا داعي لتعديل هذا الملف يدويًا.
    ============================================================ */
 
-window.COURSES_LIST = ["AAA1","AAA6","AAA8","AAA15","AAA16"];
+window.COURSES_LIST = ["AAA1","AAA6","AAA8","AAA15","AAA16","AAA17"];
