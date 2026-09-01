@@ -23,11 +23,6 @@ registerCourse("AAA1", {
       "description": "الحلقة الأولى."
     },
     {
-      "title": "الحلقة 9",
-      "link": "https://archive.org/download/ep-9_20260812/EP9.mp4",
-      "description": "الحلقة التاسعة."
-    },
-    {
       "title": "الحلقة 10",
       "link": "https://archive.org/download/ep-10_202608/EP10.mp4",
       "description": "الحلقة العاشرة."
@@ -36,16 +31,6 @@ registerCourse("AAA1", {
       "title": "الحلقة 11",
       "link": "https://archive.org/download/ep-11_202608/EP11.mp4",
       "description": "الحلقة الحادية عشرة."
-    },
-    {
-      "title": "الحلقة 12",
-      "link": "https://archive.org/download/ep-12_202608/EP12.mp4",
-      "description": "الحلقة الثانية عشرة."
-    },
-    {
-      "title": "الحلقة 13",
-      "link": "https://archive.org/download/ep-13_202608/EP13.mp4",
-      "description": "الحلقة الثالثة عشرة."
     }
   ]
 });
