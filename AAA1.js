@@ -19,7 +19,7 @@ registerCourse("AAA1", {
   "videos": [
     {
       "title": "الحلقة 1",
-      "link": "https://cdn03.vdocipher.com/media/khdwCaaznDlzD/5d184c56/track.mp4",
+      "link": "https://live-uae-next.spacetoongo.com/ST_MENA_NEXT/hls/a_1_0.m3u8?pkg_hm=r9p2hjipmw2kl.m3u8&pkg_svc=1&pkg_vcodec=avc1&pkg_media=audio",
       "description": "الحلقة الأولى."
     },
     {
