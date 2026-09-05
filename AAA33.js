@@ -1,5 +1,5 @@
 registerCourse("AAA33", {
-  "img": "",
+  "img": "AAA33.jpg",
   "name": "الدرس الاول الخبير",
   "description": "الدرس الاول الخبير",
   "category": "",
